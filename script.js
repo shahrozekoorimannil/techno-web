@@ -54,7 +54,7 @@
     const currentFrame = index => {
       // Map array index back to physical file number
       const actualFileIndex = (index * frameStep) - (frameStep - 1);
-      return `public/images/hero/ezgif-frame-${actualFileIndex.toString().padStart(3, '0')}.png`;
+      return `assets/images/hero/ezgif-frame-${actualFileIndex.toString().padStart(3, '0')}.png`;
     };
 
     // PROGRESSIVE LOADING: Prevent main thread blocking and memory spikes
