@@ -1129,6 +1129,9 @@ button { border: none; background: none; cursor: none; font-family: inherit; }
     grid-template-columns: 1fr;
     gap: 60px;
   }
+  .fan-detail-inner .fan-detail-img {
+    order: -1;
+  }
   .footer-inner { flex-direction: column; text-align: center; }
   .footer-nav { justify-content: center; }
   .footer-social { justify-content: center; }
