@@ -64,7 +64,9 @@
       img.onload = () => {
         images[i - 1] = img;
         imagesLoaded++;
-        if (imagesLoaded === 1) renderCanvas(images[0]);
+        if (imagesLoaded === 1 && !images[0]) {
+           renderCanvas(images[0]);
+        }
         // Recursively load the next image only after the current one finishes
         requestAnimationFrame(() => loadNextFrame(i + 1));
       };
@@ -75,8 +77,29 @@
       img.src = currentFrame(i);
     };
 
-    // Kick off progressive load
-    loadNextFrame(1);
+    // EAGER PRELOAD BATCH
+    const preloadTarget = Math.min(6, frameCount);
+    let preloadFinished = 0;
+
+    for (let i = 1; i <= preloadTarget; i++) {
+      const img = new Image();
+      img.onload = () => {
+        images[i - 1] = img;
+        imagesLoaded++;
+        preloadFinished++;
+        if (i === 1) renderCanvas(img); // Instantly render frame 1 on load
+        
+        // Once preload batch finishes, kick off the background progressive loader
+        if (preloadFinished === preloadTarget) {
+          loadNextFrame(preloadTarget + 1);
+        }
+      };
+      img.onerror = () => {
+        preloadFinished++;
+        if (preloadFinished === preloadTarget) loadNextFrame(preloadTarget + 1);
+      };
+      img.src = currentFrame(i);
+    }
 
     let currentFrameIndex = 0;
     let targetFrameIndex = 0;
@@ -122,9 +145,10 @@
     }
 
     function updateAnimation() {
-      // Lerp for smooth easing (0.08 is the smoothing factor)
-      currentFrameIndex += (targetFrameIndex - currentFrameIndex) * 0.08;
-      currentFraction += (targetFraction - currentFraction) * 0.08;
+      // Tight binding on mobile to remove lag/delay, smooth easing on desktop
+      const easing = isMobile ? 1 : 0.08; 
+      currentFrameIndex += (targetFrameIndex - currentFrameIndex) * easing;
+      currentFraction += (targetFraction - currentFraction) * easing;
 
       const frameToDraw = Math.round(currentFrameIndex);
       
