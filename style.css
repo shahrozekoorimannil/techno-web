@@ -1175,3 +1175,26 @@ button { border: none; background: none; cursor: none; font-family: inherit; }
   background: rgba(201,169,110,0.25);
   color: var(--white);
 }
+
+/* ── CTA BUTTON OUTLINE VARIANT ── */
+.cta-btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid rgba(201,169,110,0.55);
+}
+.cta-btn-outline::before { display: none; }
+.cta-btn-outline:hover {
+  background: rgba(201,169,110,0.10);
+  color: var(--gold-light);
+  box-shadow: 0 12px 40px rgba(201,169,110,0.15);
+  border-color: var(--gold);
+}
+
+/* ── NAV ACTIVE LINK (shop / service pages) ── */
+.nav-active {
+  color: var(--white) !important;
+}
+.nav-active::after {
+  width: 100% !important;
+  background: var(--gold);
+}

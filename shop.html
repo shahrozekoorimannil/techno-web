@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" />
+  <title>Shop — Techno Fans &amp; Lights | Premium Fans, Lights &amp; Water Heaters</title>
+  <meta name="description" content="Browse our curated collection of BLDC ceiling fans, designer fans, decorative lights, chandeliers, AO Smith water heaters and more. Authorized dealer for Atomberg, AO Smith and Kühl." />
+  <meta property="og:title" content="Shop — Techno Fans &amp; Lights" />
+  <meta property="og:description" content="Premium fans, lights &amp; water heaters. Authorized dealer for Atomberg, AO Smith &amp; Kühl." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="shop.css" />
+</head>
+<body>
+
+  <!-- ═══════════ NAVIGATION ═══════════ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" id="nav-logo">TECHNO</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#collections">Collections</a></li>
+        <li><a href="shop.html" class="nav-active">Shop</a></li>
+        <li><a href="service.html">Service</a></li>
+        <li><a href="index.html#showroom">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="index.html"              class="mobile-link">Home</a></li>
+      <li><a href="index.html#collections"  class="mobile-link">Collections</a></li>
+      <li><a href="shop.html"               class="mobile-link">Shop</a></li>
+      <li><a href="service.html"            class="mobile-link">Service</a></li>
+      <li><a href="index.html#showroom"     class="mobile-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ═══════════ SHOP HERO ═══════════ -->
+  <section class="shop-hero" id="shop-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Shop</span>
+      </nav>
+      <h1>Browse Our <em>Collection</em></h1>
+      <p>Premium fans, lights &amp; water heaters — curated for the discerning home</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ SIDEBAR BACKDROP ═══════════ -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+  <!-- ═══════════ SHOP BODY ═══════════ -->
+  <div class="shop-body container" id="shop-body">
+
+    <!-- SIDEBAR -->
+    <aside class="shop-sidebar" id="shop-sidebar" aria-label="Product filters">
+      <div class="sidebar-header">
+        <span class="sidebar-title">Filters</span>
+        <button class="clear-filters-btn" id="clear-filters" aria-label="Clear all filters">Clear All</button>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-title">Category</div>
+        <ul class="filter-list" id="category-filter" aria-label="Filter by category"></ul>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-title">Brand</div>
+        <ul class="filter-list" id="brand-filter" aria-label="Filter by brand"></ul>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="shop-main" id="shop-main">
+
+      <!-- Toolbar -->
+      <div class="shop-toolbar">
+        <button class="filter-toggle-btn" id="filter-toggle" aria-label="Open filters" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="6"  x2="20" y2="6"/>
+            <line x1="4" y1="12" x2="14" y2="12"/>
+            <line x1="4" y1="18" x2="11" y2="18"/>
+          </svg>
+          Filters
+        </button>
+
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input
+            type="search"
+            id="shop-search"
+            placeholder="Search fans, lights, brands…"
+            autocomplete="off"
+            aria-label="Search products"
+          />
+        </div>
+
+        <div class="toolbar-right">
+          <span class="results-count" id="results-count" aria-live="polite" aria-atomic="true">— products</span>
+          <select id="sort-select" aria-label="Sort products">
+            <option value="default">Featured</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name-asc">Name: A – Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid (filled by shop.js) -->
+      <div class="product-grid" id="product-grid" role="list" aria-label="Product listing"></div>
+
+      <!-- No Results State -->
+      <div class="no-results" id="no-results" hidden role="alert" aria-live="assertive">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1" width="56" height="56" style="color:var(--white-10)" aria-hidden="true">
+          <circle cx="24" cy="24" r="20"/>
+          <path d="M15 15l18 18M33 15 15 33"/>
+        </svg>
+        <p>No products found</p>
+        <p>Try a different search or clear your filters</p>
+        <button class="cta-btn" id="no-results-clear" style="margin-top:24px;cursor:pointer;">Clear Filters</button>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ═══════════ BRAND STRIP ═══════════ -->
+  <section class="brand-strip shop-brand-strip" id="shop-brand-strip">
+    <h3 class="bt-heading reveal-up">Authorized Service &amp; Sales Partner</h3>
+    <div class="bt-logos reveal-up">
+      <img src="assets/images/logos/Atomberg.webp" alt="Atomberg" class="bt-logo bt-logo-wide" />
+      <img src="assets/images/logos/ao smith.webp"  alt="AO Smith"  class="bt-logo bt-logo-wide" />
+      <img src="assets/images/logos/kuhl.png"        alt="Kühl"      class="bt-logo" />
+    </div>
+    <p class="bt-subtext reveal-up">Sales Available: Atomberg &amp; AO Smith</p>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">TECHNO</span>
+        <p class="footer-tagline">Fans &amp; Lights. Where light becomes art.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#collections">Collections</a>
+        <a href="shop.html">Shop</a>
+        <a href="service.html">Service</a>
+        <a href="index.html#showroom">Contact</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/technoservicecare?igsh=MTRobjg1ZHRzcndrdg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon" id="soc-ig">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://wa.me/918594000196" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-icon" id="soc-wa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9c4.6 0 8 3.4 8 8z" /></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Techno Fans &amp; Lights. All rights reserved.</p>
+      <p>Crafted with care in India.</p>
+    </div>
+  </footer>
+
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/918594000196?text=Hi,%20I'm%20interested%20in%20your%20products" target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+
+  <!-- ═══════════ PRODUCT DETAIL MODAL ═══════════ -->
+  <div class="product-modal-overlay" id="product-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="product-modal">
+      <button class="modal-close" id="modal-close" aria-label="Close product details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div id="modal-img-wrap" data-cat="">
+        <div class="modal-img-placeholder">
+          <div class="modal-pip-icon"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div id="modal-brand"></div>
+        <h2 id="modal-title"></h2>
+        <p  id="modal-specs"></p>
+        <div id="modal-price"></div>
+        <div class="modal-actions">
+          <a href="#" class="btn-enquire" id="modal-enquire" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp Enquiry
+          </a>
+          <button class="btn-details modal-close-btn" id="modal-close-btn">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="shop.js"></script>
+  <script>
+    // Wire "Clear Filters" in no-results state
+    document.getElementById('no-results-clear').addEventListener('click', function() {
+      document.getElementById('clear-filters').click();
+    });
+  </script>
+</body>
+</html>

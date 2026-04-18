@@ -231,20 +231,22 @@
     });
   });
 
-  // ── HERO PARTICLES ──
+  // ── HERO PARTICLES (homepage only) ──
   const particleContainer = document.getElementById('hero-particles');
   const PARTICLE_COUNT = 28;
 
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const p = document.createElement('div');
-    p.classList.add('particle');
-    p.style.setProperty('--dur',   (3 + Math.random() * 5) + 's');
-    p.style.setProperty('--delay', (Math.random() * 6) + 's');
-    p.style.left   = (5 + Math.random() * 90) + '%';
-    p.style.bottom = (5 + Math.random() * 40) + '%';
-    p.style.width  = (1 + Math.random() * 2) + 'px';
-    p.style.height = p.style.width;
-    particleContainer.appendChild(p);
+  if (particleContainer) {
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.setProperty('--dur',   (3 + Math.random() * 5) + 's');
+      p.style.setProperty('--delay', (Math.random() * 6) + 's');
+      p.style.left   = (5 + Math.random() * 90) + '%';
+      p.style.bottom = (5 + Math.random() * 40) + '%';
+      p.style.width  = (1 + Math.random() * 2) + 'px';
+      p.style.height = p.style.width;
+      particleContainer.appendChild(p);
+    }
   }
 
   // ── SCROLL REVEAL ──
