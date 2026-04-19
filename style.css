@@ -1147,21 +1147,29 @@ button { border: none; background: none; cursor: none; font-family: inherit; }
   right: 30px;
   width: 56px;
   height: 56px;
-  background-color: #25D366;
-  color: #fff;
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid rgba(37, 211, 102, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #25D366;
   border-radius: 50%;
-  display: flex;
+  display: none; /* Hidden on desktop */
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-  transition: transform 0.3s var(--easing), background 0.3s ease;
-  cursor: none;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.15), inset 0 0 12px rgba(37, 211, 102, 0.1);
+  transition: transform 0.4s var(--easing), background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
-.floating-wa:hover {
-  transform: scale(1.1) translateY(-4px);
-  background-color: #1EBE56;
+.floating-wa:hover,
+.floating-wa:active {
+  transform: scale(1.1) translateY(-4px) translateZ(0);
+  background: rgba(37, 211, 102, 0.25);
+  border-color: #25D366;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3), inset 0 0 16px rgba(37, 211, 102, 0.2);
 }
 
 .floating-wa svg {
@@ -1220,6 +1228,7 @@ button { border: none; background: none; cursor: none; font-family: inherit; }
   .bt-logo { width: 90vw; max-width: 280px; height: 130px; padding: 24px; }
   .bt-logo.bt-logo-wide { padding: 5px 15px; }
   .footer-bottom { flex-direction: column; text-align: center; }
+  .floating-wa { display: flex; }
 }
 
 @media (max-width: 480px) {
