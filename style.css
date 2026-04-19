@@ -785,18 +785,75 @@ button { border: none; background: none; cursor: none; font-family: inherit; }
   gap: 28px;
 }
 
-.fspec {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 20px;
-  border: 1px solid var(--white-10);
-  border-radius: 2px;
-  background: var(--dark-1);
+.fspec:hover { border-color: var(--gold-muted); }
+
+/* ── FAQ ACCORDION ── */
+.faq-section {
+  padding: 120px 0;
+  background: var(--near-black);
+}
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid var(--white-10);
   transition: border-color 0.3s ease;
 }
+.faq-item:hover {
+  border-color: rgba(201,169,110,0.3);
+}
+.faq-btn {
+  width: 100%;
+  text-align: left;
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+.faq-btn:hover { color: var(--gold); }
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  flex-shrink: 0;
+  margin-left: 20px;
+  transition: transform 0.4s var(--easing);
+}
+.faq-icon::before, .faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+  transition: transform 0.4s var(--easing);
+}
+.faq-icon::before { top: 11px; left: 0; width: 24px; height: 2px; }
+.faq-icon::after { top: 0; left: 11px; width: 2px; height: 24px; }
+.faq-item.active .faq-icon { transform: rotate(90deg); }
+.faq-item.active .faq-icon::after { transform: scaleY(0); }
+.faq-item.active .faq-btn { color: var(--gold); }
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s var(--easing);
+}
+.faq-content-inner {
+  padding-bottom: 30px;
+  color: var(--white-60);
+  line-height: 1.8;
+  font-size: 1rem;
+  font-weight: 300;
+}
 
-.fspec:hover { border-color: var(--gold-muted); }
 
 .fspec-n {
   font-family: var(--font-serif);

@@ -616,14 +616,32 @@
   buildBrands();
   render();
 
+  const urlParams = new URLSearchParams(window.location.search);
+
   // Deep-link via ?cat=ceiling-fans
-  const urlCat = new URLSearchParams(window.location.search).get('cat');
+  const urlCat = urlParams.get('cat');
   if (urlCat && CATEGORIES[urlCat]) {
     state.category = urlCat;
     catList.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     const target = catList.querySelector(`[data-cat="${urlCat}"]`);
     if (target) target.classList.add('active');
     render();
+  }
+
+  // Deep-link via ?brand=Atomberg
+  const urlBrand = urlParams.get('brand');
+  if (urlBrand) {
+    // Find the checkbox for this brand
+    const checkboxes = brandList.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+      if (cb.value.toLowerCase() === urlBrand.toLowerCase()) {
+        cb.checked = true;
+        state.brands.add(cb.value);
+      }
+    });
+    if (state.brands.size > 0) {
+      render();
+    }
   }
 
 })();

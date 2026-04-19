@@ -421,6 +421,29 @@
 
   sections.forEach(s => sectionObserver.observe(s));
 
+  // ── FAQ ACCORDION ──
+  const faqBtns = document.querySelectorAll('.faq-btn');
+  faqBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const content = item.querySelector('.faq-content');
+      const isActive = item.classList.contains('active');
+      
+      // Close all others
+      document.querySelectorAll('.faq-item').forEach(otherItem => {
+        otherItem.classList.remove('active');
+        const otherContent = otherItem.querySelector('.faq-content');
+        if (otherContent) otherContent.style.maxHeight = null;
+      });
+
+      // Open clicked if it wasn't active
+      if (!isActive) {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+
   // ── PAGE LOAD FADE-IN ──
   document.body.style.opacity = '0';
   document.body.style.transition = 'opacity 0.6s ease';
