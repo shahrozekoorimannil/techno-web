@@ -50,6 +50,34 @@
   const heroScrollContainer = document.getElementById('hero-scroll-container');
   let imagesLoaded = 0;
 
+  // ── GEOMETRY CACHE FOR SCROLL PERF ──
+  let cachedWh = window.innerHeight;
+  let cachedHeroTop = 0, cachedHeroHeight = 0;
+  let cachedAmbientTop = 0, cachedAmbientHeight = 0;
+  let cachedShowroomTop = 0, cachedShowroomHeight = 0;
+
+  function calculateDimensions() {
+    cachedWh = window.innerHeight;
+    if (heroScrollContainer) {
+      cachedHeroTop = window.scrollY + heroScrollContainer.getBoundingClientRect().top;
+      cachedHeroHeight = heroScrollContainer.offsetHeight;
+    }
+    const ambientSection = document.querySelector('.ambient-section');
+    if (ambientSection) {
+      cachedAmbientTop = window.scrollY + ambientSection.getBoundingClientRect().top;
+      cachedAmbientHeight = ambientSection.offsetHeight;
+    }
+    const showroomSection = document.querySelector('.showroom');
+    if (showroomSection) {
+      cachedShowroomTop = window.scrollY + showroomSection.getBoundingClientRect().top;
+      cachedShowroomHeight = showroomSection.offsetHeight;
+    }
+  }
+
+  window.addEventListener('resize', calculateDimensions);
+  window.addEventListener('load', calculateDimensions);
+  calculateDimensions();
+
   if (canvas) {
     const currentFrame = index => {
       // Map array index back to physical file number
@@ -127,16 +155,15 @@
     }
 
     function calcScrollFraction() {
-      const rect = heroScrollContainer.getBoundingClientRect();
-      const st = -rect.top;
-      const maxScroll = rect.height - window.innerHeight;
+      const st = window.scrollY - cachedHeroTop;
+      const maxScroll = cachedHeroHeight - cachedWh;
       let fraction = st / maxScroll;
       return Math.max(0, Math.min(1, fraction));
     }
 
     function updateAnimation() {
-      // Tight binding on mobile to remove lag/delay, smooth easing on desktop
-      const easing = isMobile ? 1 : 0.08; 
+      // Smooth easing on mobile to compensate for jarring scroll events
+      const easing = isMobile ? 0.15 : 0.08; 
       currentFrameIndex += (targetFrameIndex - currentFrameIndex) * easing;
       currentFraction += (targetFraction - currentFraction) * easing;
 
@@ -295,24 +322,21 @@
 
   function doParallax() {
     const scrollY = window.scrollY;
-    const wh = window.innerHeight;
 
     // Ambient section parallax
     if (ambientImg) {
-      const ambientSection = document.querySelector('.ambient-section');
-      const rect = ambientSection.getBoundingClientRect();
-      const progress = (wh - rect.top) / (wh + rect.height);
+      const currentTop = cachedAmbientTop - scrollY;
+      const progress = (cachedWh - currentTop) / (cachedWh + cachedAmbientHeight);
       const offset = (progress - 0.5) * 120;
-      ambientImg.style.transform = `translateY(${offset}px)`;
+      ambientImg.style.transform = `translateY(${offset}px) translateZ(0)`;
     }
 
     // Showroom parallax
     if (showroomImg) {
-      const showroomSection = document.querySelector('.showroom');
-      const rect = showroomSection.getBoundingClientRect();
-      const progress = (wh - rect.top) / (wh + rect.height);
+      const currentTop = cachedShowroomTop - scrollY;
+      const progress = (cachedWh - currentTop) / (cachedWh + cachedShowroomHeight);
       const offset = (progress - 0.5) * 100;
-      showroomImg.style.transform = `translateY(${offset}px)`;
+      showroomImg.style.transform = `translateY(${offset}px) translateZ(0)`;
     }
   }
 

@@ -119,6 +119,9 @@ button { border: none; background: none; cursor: none; font-family: inherit; }
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-color: var(--white-10);
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
 .nav-inner {
@@ -194,6 +197,7 @@ button { border: none; background: none; cursor: none; font-family: inherit; }
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(8,8,8,0.97);
   backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   z-index: 999;
   display: flex;
   align-items: center;
@@ -201,6 +205,9 @@ button { border: none; background: none; cursor: none; font-family: inherit; }
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
 .mobile-menu.open {
@@ -948,10 +955,13 @@ button { border: none; background: none; cursor: none; font-family: inherit; }
   text-decoration: none;
   transition: transform 0.4s var(--easing), background 0.4s ease, border-color 0.4s ease;
   cursor: none;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
 .contact-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-8px) translateZ(0);
   background: rgba(255, 255, 255, 0.06);
   border-color: var(--gold-light);
 }
