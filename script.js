@@ -64,10 +64,8 @@
       img.onload = () => {
         images[i - 1] = img;
         imagesLoaded++;
-        if (imagesLoaded === 1 && !images[0]) {
-           renderCanvas(images[0]);
-        }
-        // Recursively load the next image only after the current one finishes
+        if (imagesLoaded === 1) renderCanvas(images[0]);
+        // Recursively load the next image
         requestAnimationFrame(() => loadNextFrame(i + 1));
       };
       // Prevent failed loads from breaking the chain
@@ -77,29 +75,21 @@
       img.src = currentFrame(i);
     };
 
-    // EAGER PRELOAD BATCH
-    const preloadTarget = Math.min(6, frameCount);
-    let preloadFinished = 0;
-
-    for (let i = 1; i <= preloadTarget; i++) {
-      const img = new Image();
-      img.onload = () => {
-        images[i - 1] = img;
-        imagesLoaded++;
-        preloadFinished++;
-        if (i === 1) renderCanvas(img); // Instantly render frame 1 on load
-        
-        // Once preload batch finishes, kick off the background progressive loader
-        if (preloadFinished === preloadTarget) {
-          loadNextFrame(preloadTarget + 1);
-        }
-      };
-      img.onerror = () => {
-        preloadFinished++;
-        if (preloadFinished === preloadTarget) loadNextFrame(preloadTarget + 1);
-      };
-      img.src = currentFrame(i);
-    }
+    // Frame 1 is critical, load it immediately.
+    const firstImg = new Image();
+    firstImg.onload = () => {
+      images[0] = firstImg;
+      imagesLoaded++;
+      renderCanvas(firstImg);
+      
+      // Defer the heavy sequence until page structure & core assets load
+      if (document.readyState === 'complete') {
+        loadNextFrame(2);
+      } else {
+        window.addEventListener('load', () => loadNextFrame(2));
+      }
+    };
+    firstImg.src = currentFrame(1);
 
     let currentFrameIndex = 0;
     let targetFrameIndex = 0;
