@@ -1,0 +1,20 @@
+{
+  "name": "techno-web",
+  "version": "1.0.0",
+  "description": "Techno Fans & Lights — Premium Showroom",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build needed'",
+    "lint": "echo 'Linting not configured'"
+  },
+  "keywords": [
+    "fans",
+    "lights",
+    "showroom"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.3.1"
+  }
+}
