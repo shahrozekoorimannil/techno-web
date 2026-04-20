@@ -465,4 +465,76 @@
     document.body.style.opacity = '1';
   });
 
+  // ── REVIEW SLIDER ──
+  (function() {
+    const track   = document.getElementById('review-track');
+    const dotsEl  = document.getElementById('review-dots');
+    const prevBtn = document.getElementById('review-prev');
+    const nextBtn = document.getElementById('review-next');
+    if (!track) return;
+
+    const cards   = track.querySelectorAll('.review-card');
+    const total   = cards.length;
+    let current   = 0;
+    let autoTimer = null;
+
+    function visibleCount() {
+      const w = window.innerWidth;
+      if (w < 600) return 1;
+      if (w < 900) return 2;
+      return 3;
+    }
+
+    function maxIndex() {
+      return Math.max(0, total - visibleCount());
+    }
+
+    function buildDots() {
+      if (!dotsEl) return;
+      dotsEl.innerHTML = '';
+      const count = maxIndex() + 1;
+      for (let i = 0; i < count; i++) {
+        const d = document.createElement('button');
+        d.className = 'review-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+      }
+    }
+
+    function goTo(idx) {
+      current = Math.max(0, Math.min(idx, maxIndex()));
+      const cardW   = cards[0].getBoundingClientRect().width;
+      const gap     = 28;
+      const offset  = current * (cardW + gap);
+      track.style.transform = `translateX(-${offset}px)`;
+      dotsEl && dotsEl.querySelectorAll('.review-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    function next() { goTo(current >= maxIndex() ? 0 : current + 1); }
+    function prev() { goTo(current <= 0 ? maxIndex() : current - 1); }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { clearAuto(); prev(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { clearAuto(); next(); });
+
+    function startAuto() { autoTimer = setInterval(next, 5000); }
+    function clearAuto() { clearInterval(autoTimer); startAuto(); }
+
+    // Touch / swipe
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) { clearAuto(); dx < 0 ? next() : prev(); }
+    }, { passive: true });
+
+    window.addEventListener('resize', () => { buildDots(); goTo(Math.min(current, maxIndex())); });
+
+    buildDots();
+    startAuto();
+  })();
+
 })();
+

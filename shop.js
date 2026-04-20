@@ -36,7 +36,7 @@
       badges: ['Smart', 'New Arrival'],
       specs: 'BLDC · IoT · Alexa & Google · Moonbeam LED · 5 Star',
       image: 'assets/products/atomberg-renesa-elite-smart-ritz-blue.jpg',
-      isNew: true, isSmart: true
+      isNew: true, isSmart: true, isLimitedStock: true
     },
     {
       id: 'atm-renesa-elite-smart-golden-oakwood',
@@ -47,7 +47,7 @@
       badges: ['Smart'],
       specs: 'BLDC · IoT · Alexa & Google · Moonbeam LED · 5 Star',
       image: 'assets/products/atomberg-renesa-elite-smart-golden-oakwood.jpg',
-      isNew: false, isSmart: true
+      isNew: false, isSmart: true, isLimitedStock: false
     },
     {
       id: 'atm-renesa-elite-smart-pearl-white',
@@ -104,7 +104,7 @@
       badges: ['Premium', 'New Arrival'],
       specs: 'BLDC · High Air Delivery 245 CMM · Integrated ABS · IoT',
       image: 'assets/products/atomberg-aris-gladius-pearl-white.jpg',
-      isNew: true, isSmart: true
+      isNew: true, isSmart: true, isLimitedStock: true
     },
     {
       id: 'atm-aris-gladius-sand-grey',
@@ -115,7 +115,7 @@
       badges: ['Premium', 'New Arrival'],
       specs: 'BLDC · High Air Delivery 245 CMM · Integrated ABS · IoT',
       image: 'assets/products/atomberg-aris-gladius-sand-grey.jpg',
-      isNew: true, isSmart: true
+      isNew: true, isSmart: true, isLimitedStock: true
     },
 
     // ── REMOTE CEILING FANS ──────────────────────────────────
@@ -216,7 +216,7 @@
       badges: ['New Arrival'],
       specs: 'BLDC · Remote Control · 5 Star · Voltage 165V–285V · 35W',
       image: 'assets/products/atomberg-renesa-prime-misty-teal.jpg',
-      isNew: true, isSmart: false
+      isNew: true, isSmart: false, isLimitedStock: true
     },
 
     // ── WALL FANS ──────────────────────────────────────────────
@@ -495,22 +495,30 @@
     return `<div class="product-price"><span class="price-from">From</span> ₹${price.toLocaleString('en-IN')}</div>`;
   }
 
-  function badgesHtml(badges) {
-    if (!badges || !badges.length) return '';
-    const primary = badges[0];
-    let cls = 'product-badge';
-    if (primary === 'Service')     cls += ' badge-service';
-    if (primary === 'Authorized')  cls += ' badge-auth';
-    if (primary === 'Smart')       cls += ' badge-smart';
-    if (primary === 'New Arrival') cls += ' badge-new';
-    let html = `<div class="${cls}">${primary}</div>`;
-    // Second badge (smaller, stacked)
-    if (badges[1]) {
+  function badgesHtml(p) {
+    const badges = p.badges || [];
+    let html = '';
+    // Limited Stock always occupies the main badge slot
+    if (p.isLimitedStock) {
+      html += `<div class="product-badge badge-limited">Limited Stock</div>`;
+    } else if (badges.length) {
+      const primary = badges[0];
+      let cls = 'product-badge';
+      if (primary === 'Service')     cls += ' badge-service';
+      if (primary === 'Authorized')  cls += ' badge-auth';
+      if (primary === 'Smart')       cls += ' badge-smart';
+      if (primary === 'New Arrival') cls += ' badge-new';
+      html += `<div class="${cls}">${primary}</div>`;
+    }
+    // Second badge (stacked below first)
+    const secondSource = p.isLimitedStock ? badges[0] : badges[1];
+    if (secondSource) {
       let cls2 = 'product-badge product-badge-2';
-      if (badges[1] === 'Smart')       cls2 += ' badge-smart';
-      if (badges[1] === 'New Arrival') cls2 += ' badge-new';
-      if (badges[1] === 'Best Seller') cls2 += ' badge-bs';
-      html += `<div class="${cls2}">${badges[1]}</div>`;
+      if (secondSource === 'Smart')       cls2 += ' badge-smart';
+      if (secondSource === 'New Arrival') cls2 += ' badge-new';
+      if (secondSource === 'Best Seller') cls2 += ' badge-bs';
+      if (secondSource === 'Premium')     cls2 += '';
+      html += `<div class="${cls2}">${secondSource}</div>`;
     }
     return html;
   }
@@ -521,16 +529,17 @@
   function cardHtml(p) {
     const cfg  = CATEGORIES[p.category] || { label: p.category, icon: 'light' };
     const icon = ICONS[cfg.icon] || ICONS.light;
+    const compareId = 'cmp-' + p.id;
     return `
 <article class="product-card" data-id="${p.id}" tabindex="0" role="listitem">
   <div class="product-img-wrap" data-cat="${p.category}">
-    ${badgesHtml(p.badges)}
+    ${badgesHtml(p)}
     <div class="product-img-placeholder">
       <div class="pip-icon">${icon}</div>
       <span class="pip-label">${cfg.label}</span>
       <span class="pip-hint">Photo coming soon</span>
     </div>
-    <img src="${p.image}" alt="${p.title}" class="product-real-img" loading="lazy">
+    <img src="${p.image}" alt="${p.title}" class="product-real-img" loading="lazy" decoding="async">
   </div>
   <div class="product-info">
     <div class="product-brand">${p.brand}</div>
@@ -548,6 +557,10 @@
       <button class="btn-details" data-id="${p.id}" aria-label="View details for ${p.title}">
         Details
       </button>
+    </div>
+    <div class="compare-checkbox-wrap">
+      <input type="checkbox" id="${compareId}" class="compare-check" data-id="${p.id}" aria-label="Compare ${p.title}">
+      <label for="${compareId}">Compare</label>
     </div>
   </div>
 </article>`;
@@ -633,6 +646,28 @@
     grid.querySelectorAll('.product-card').forEach(card => {
       card.addEventListener('keydown', e => {
         if (e.key === 'Enter') openModal(card.dataset.id);
+      });
+    });
+
+    // Restore compare checkbox states & bind new ones
+    grid.querySelectorAll('.compare-check').forEach(cb => {
+      // Restore checked state if this product is already in compare set
+      if (compareSet.has(cb.dataset.id)) cb.checked = true;
+      cb.addEventListener('change', () => {
+        if (cb.checked) {
+          if (compareSet.size >= 3) {
+            cb.checked = false;
+            // Flash the bar to signal limit
+            compareBar.classList.add('visible');
+            compareBar.style.borderTopColor = 'rgba(220,80,80,0.5)';
+            setTimeout(() => { compareBar.style.borderTopColor = ''; }, 800);
+            return;
+          }
+          compareSet.add(cb.dataset.id);
+        } else {
+          compareSet.delete(cb.dataset.id);
+        }
+        renderCompareBar();
       });
     });
   }
@@ -849,4 +884,107 @@
     if (state.brands.size > 0) render();
   }
 
+  // ─────────────────────────────────────────────
+  // ⑲ COMPARE SYSTEM (max 3 products)
+  // ─────────────────────────────────────────────
+  const compareSet = new Set();
+  const compareBar = document.getElementById('compare-bar');
+  const compareItemsEl = document.getElementById('compare-items');
+  const compareBtnNow  = document.getElementById('btn-compare-now');
+  const compareBtnClr  = document.getElementById('btn-compare-clear');
+  const compareModalOverlay = document.getElementById('compare-modal-overlay');
+  const compareModalClose   = document.getElementById('compare-modal-close');
+
+  function renderCompareBar() {
+    const ids = [...compareSet];
+    compareItemsEl.innerHTML = '';
+
+    ids.forEach(id => {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      const chip = document.createElement('div');
+      chip.className = 'compare-item-chip';
+      chip.innerHTML = `<span>${p.title}</span><button class="compare-remove-chip" data-id="${id}" aria-label="Remove ${p.title} from compare">&times;</button>`;
+      chip.querySelector('.compare-remove-chip').addEventListener('click', () => {
+        compareSet.delete(id);
+        // Uncheck the card's checkbox if visible
+        const cb = grid.querySelector(`.compare-check[data-id="${id}"]`);
+        if (cb) cb.checked = false;
+        renderCompareBar();
+      });
+      compareItemsEl.appendChild(chip);
+    });
+
+    // Empty slots
+    for (let i = ids.length; i < 3; i++) {
+      const slot = document.createElement('div');
+      slot.className = 'compare-empty-slot';
+      slot.textContent = 'Select product';
+      compareItemsEl.appendChild(slot);
+    }
+
+    compareBar.classList.toggle('visible', ids.length > 0);
+  }
+
+  function openCompareModal() {
+    const ids = [...compareSet];
+    if (ids.length < 2) {
+      compareBar.style.borderTopColor = 'rgba(220,80,80,0.5)';
+      setTimeout(() => { compareBar.style.borderTopColor = ''; }, 800);
+      return;
+    }
+    const products = ids.map(id => PRODUCTS.find(x => x.id === id)).filter(Boolean);
+
+    const ROWS = [
+      { label: 'Brand',    val: p => p.brand },
+      { label: 'Category', val: p => (CATEGORIES[p.category] || {}).label || p.category },
+      { label: 'Price',    val: p => p.price ? `₹${p.price.toLocaleString('en-IN')}` : 'Call for Price' },
+      { label: 'Specs',    val: p => p.specs },
+      { label: 'Smart',    val: p => p.isSmart ? '<strong>Yes</strong>' : 'No' },
+    ];
+
+    let headerCols = '<th>Spec</th>';
+    products.forEach(p => { headerCols += `<th>${p.title}</th>`; });
+
+    let rows = '';
+    ROWS.forEach(row => {
+      let cells = `<td>${row.label}</td>`;
+      products.forEach(p => { cells += `<td>${row.val(p)}</td>`; });
+      rows += `<tr>${cells}</tr>`;
+    });
+
+    // WhatsApp row
+    let waRow = '<td>Enquire</td>';
+    products.forEach(p => {
+      waRow += `<td><a href="${waLink(p.title)}" target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-size:.78rem;text-decoration:none;">WhatsApp →</a></td>`;
+    });
+    rows += `<tr>${waRow}</tr>`;
+
+    document.getElementById('compare-table-head').innerHTML = `<tr>${headerCols}</tr>`;
+    document.getElementById('compare-table-body').innerHTML = rows;
+
+    compareModalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCompareModal() {
+    compareModalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (compareBtnNow) compareBtnNow.addEventListener('click', openCompareModal);
+  if (compareBtnClr) compareBtnClr.addEventListener('click', () => {
+    compareSet.clear();
+    grid.querySelectorAll('.compare-check').forEach(cb => { cb.checked = false; });
+    renderCompareBar();
+  });
+  if (compareModalClose)  compareModalClose.addEventListener('click', closeCompareModal);
+  if (compareModalOverlay) {
+    compareModalOverlay.addEventListener('click', e => { if (e.target === compareModalOverlay) closeCompareModal(); });
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && compareModalOverlay && compareModalOverlay.classList.contains('open')) closeCompareModal();
+  });
+
 })();
+
