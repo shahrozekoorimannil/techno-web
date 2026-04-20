@@ -134,6 +134,15 @@
 }
 .filter-btn:hover { background: var(--white-05); color: var(--white); }
 .filter-btn.active { background: rgba(201,169,110,.12); color: var(--gold); }
+.filter-btn-virtual { color: var(--white-60); }
+.filter-btn-virtual:hover { color: var(--white); }
+.filter-btn-virtual.active { background: rgba(100,80,220,.1); color: #b0a0ff; }
+.filter-separator {
+  height: 1px;
+  background: var(--white-10);
+  margin: 8px 10px;
+  list-style: none;
+}
 .filter-count {
   font-size: .66rem;
   color: var(--white-30);
@@ -284,6 +293,8 @@
 .product-img-wrap[data-cat="ceiling-fans"]      { background: linear-gradient(140deg,#091825,#143655); }
 .product-img-wrap[data-cat="smart-fans"]        { background: linear-gradient(140deg,#120a2a,#2a1760); }
 .product-img-wrap[data-cat="designer-fans"]     { background: linear-gradient(140deg,#1a1300,#3a2b00); }
+.product-img-wrap[data-cat="remote-fans"]       { background: linear-gradient(140deg,#0f1a10,#1a3520); }
+.product-img-wrap[data-cat="wall-fans"]         { background: linear-gradient(140deg,#0d1a1f,#102a32); }
 .product-img-wrap[data-cat="water-heaters"]     { background: linear-gradient(140deg,#1a0e00,#3d2000); }
 .product-img-wrap[data-cat="decorative-lights"] { background: linear-gradient(140deg,#1a1600,#3c3000); }
 .product-img-wrap[data-cat="chandeliers"]       { background: linear-gradient(140deg,#18120a,#382500); }
@@ -317,8 +328,19 @@
   color: #080808;
   backdrop-filter: blur(8px);
 }
-.product-badge.badge-service  { background: rgba(37,211,102,.9); color:#fff; }
-.product-badge.badge-auth     { background: rgba(33,150,243,.9); color:#fff; }
+/* Second badge — stacked below first */
+.product-badge-2 {
+  position: absolute; top: 38px; left: 12px; z-index: 2;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: .56rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500;
+  backdrop-filter: blur(8px);
+}
+.badge-service  { background: rgba(37,211,102,.9)  !important; color:#fff !important; }
+.badge-auth     { background: rgba(33,150,243,.9)   !important; color:#fff !important; }
+.badge-smart    { background: rgba(100,80,220,.92)  !important; color:#fff !important; }
+.badge-new      { background: rgba(20,160,160,.92)  !important; color:#fff !important; }
+.badge-bs       { background: rgba(201,169,110,.85) !important; color:#080808 !important; }
 
 /* Card body */
 .product-info {
@@ -440,6 +462,8 @@
 #modal-img-wrap[data-cat="ceiling-fans"]      { background: linear-gradient(140deg,#091825,#143655); }
 #modal-img-wrap[data-cat="smart-fans"]        { background: linear-gradient(140deg,#120a2a,#2a1760); }
 #modal-img-wrap[data-cat="designer-fans"]     { background: linear-gradient(140deg,#1a1300,#3a2b00); }
+#modal-img-wrap[data-cat="remote-fans"]       { background: linear-gradient(140deg,#0f1a10,#1a3520); }
+#modal-img-wrap[data-cat="wall-fans"]         { background: linear-gradient(140deg,#0d1a1f,#102a32); }
 #modal-img-wrap[data-cat="water-heaters"]     { background: linear-gradient(140deg,#1a0e00,#3d2000); }
 #modal-img-wrap[data-cat="decorative-lights"] { background: linear-gradient(140deg,#1a1600,#3c3000); }
 #modal-img-wrap[data-cat="chandeliers"]       { background: linear-gradient(140deg,#18120a,#382500); }

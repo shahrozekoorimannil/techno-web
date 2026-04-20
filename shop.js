@@ -4,13 +4,17 @@
 
    HOW TO ADD A REAL PRODUCT IMAGE:
    1. Put your photo at the path in `image:` below
-      e.g.  assets/products/atomberg-renesa-plus.jpg
-   2. Done — the card will show the photo automatically.
+      e.g.  assets/products/atomberg-renesa-elite-snow-white.jpg
+   2. Done — the card shows it automatically.
 
    HOW TO ADD A NEW PRODUCT:
-   1. Copy any existing object in PRODUCTS below
-   2. Set a unique `id`, then fill in the rest
-   3. The product appears in the grid instantly.
+   1. Copy any object in PRODUCTS below
+   2. Set a unique `id`, fill in the rest
+   3. The product instantly appears in the grid.
+
+   CATEGORIES: smart-fans | designer-fans | remote-fans |
+               wall-fans  | exhaust-fans  | water-heaters |
+               decorative-lights | chandeliers | service-products
 
 ═══════════════════════════════════════════ */
 
@@ -18,63 +22,295 @@
   'use strict';
 
   // ─────────────────────────────────────────────
-  // ① PRODUCT CATALOGUE
-  //    Ordered: highest demand & margin first
+  // ① PRODUCT CATALOGUE — Verified Live Stock
   // ─────────────────────────────────────────────
   const PRODUCTS = [
 
-    // ── CEILING FANS — highest volume ──────────
+    // ── PREMIUM SMART FANS ────────────────────────────────────
     {
-      id: 'atm-renesa-plus',
-      title: 'Atomberg Renesa+ 1200mm',
+      id: 'atm-renesa-elite-smart-ritz-blue',
+      title: 'Renesa Elite Smart — Ritz Blue',
       brand: 'Atomberg',
-      category: 'ceiling-fans',
-      price: 4990,
-      badge: 'Best Seller',
-      specs: 'BLDC Motor · Remote Control · BEE 5 Star',
-      image: 'assets/products/atomberg-renesa-plus.jpg'
+      category: 'smart-fans',
+      price: 5349,
+      badges: ['Smart', 'New Arrival'],
+      specs: 'BLDC · IoT · Alexa & Google · Moonbeam LED · 5 Star',
+      image: 'assets/products/atomberg-renesa-elite-smart-ritz-blue.jpg',
+      isNew: true, isSmart: true
     },
     {
-      id: 'atm-renesa-smart',
-      title: 'Atomberg Renesa Smart+ 1200mm',
+      id: 'atm-renesa-elite-smart-golden-oakwood',
+      title: 'Renesa Elite Smart — Golden Oakwood',
       brand: 'Atomberg',
-      category: 'ceiling-fans',
-      price: 6490,
-      badge: 'WiFi',
-      specs: 'BLDC · WiFi · Alexa & Google Home',
-      image: 'assets/products/atomberg-renesa-smart.jpg'
+      category: 'smart-fans',
+      price: 5349,
+      badges: ['Smart'],
+      specs: 'BLDC · IoT · Alexa & Google · Moonbeam LED · 5 Star',
+      image: 'assets/products/atomberg-renesa-elite-smart-golden-oakwood.jpg',
+      isNew: false, isSmart: true
     },
     {
-      id: 'atm-gorilla',
-      title: 'Atomberg Gorilla 1200mm',
+      id: 'atm-renesa-elite-smart-pearl-white',
+      title: 'Renesa Elite Smart — Pearl White',
       brand: 'Atomberg',
-      category: 'ceiling-fans',
-      price: 3490,
-      badge: '',
-      specs: 'BLDC Motor · 5 Speed · Energy Efficient',
-      image: 'assets/products/atomberg-gorilla.jpg'
+      category: 'smart-fans',
+      price: 4699,
+      badges: ['Smart', 'Best Seller'],
+      specs: 'BLDC · IoT · Alexa & Google · Moonbeam LED · 5 Star',
+      image: 'assets/products/atomberg-renesa-elite-smart-pearl-white.jpg',
+      isNew: false, isSmart: true
     },
     {
-      id: 'kuhl-alistar-bldc',
-      title: 'Kühl Alistar BLDC 1200mm',
-      brand: 'Kühl',
-      category: 'ceiling-fans',
-      price: null,
-      badge: 'Premium',
-      specs: 'Brushless DC Motor · Remote Included',
-      image: 'assets/products/kuhl-alistar-bldc.jpg'
+      id: 'atm-renesa-halo-smart-white-gold',
+      title: 'Renesa Halo Smart — Gloss White Gold',
+      brand: 'Atomberg',
+      category: 'smart-fans',
+      price: 4099,
+      badges: ['Smart', 'Premium'],
+      specs: 'BLDC · Halo LED Ring · IoT · 5 Star BEE Rated',
+      image: 'assets/products/atomberg-renesa-halo-smart-white-gold.jpg',
+      isNew: false, isSmart: true
+    },
+    {
+      id: 'atm-renesa-halo-smart-midnight-black',
+      title: 'Renesa Halo Smart — Midnight Black',
+      brand: 'Atomberg',
+      category: 'smart-fans',
+      price: 4099,
+      badges: ['Smart'],
+      specs: 'BLDC · Halo LED Ring · IoT · 5 Star BEE Rated',
+      image: 'assets/products/atomberg-renesa-halo-smart-midnight-black.jpg',
+      isNew: false, isSmart: true
     },
 
-    // ── WATER HEATERS — high margin, authorised ─
+    // ── DESIGNER CEILING FANS ─────────────────────────────────
+    {
+      id: 'atm-studio-plus-earth-brown',
+      title: 'Studio+ — Earth Brown',
+      brand: 'Atomberg',
+      category: 'designer-fans',
+      price: 5249,
+      badges: ['Premium', 'Best Seller'],
+      specs: 'BLDC · Anti-Dust Coating · Designer Metallic Finish · Remote',
+      image: 'assets/products/atomberg-studio-plus-earth-brown.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-aris-gladius-pearl-white',
+      title: 'Aris Gladius — Pearl White',
+      brand: 'Atomberg',
+      category: 'designer-fans',
+      price: 6799,
+      badges: ['Premium', 'New Arrival'],
+      specs: 'BLDC · High Air Delivery 245 CMM · Integrated ABS · IoT',
+      image: 'assets/products/atomberg-aris-gladius-pearl-white.jpg',
+      isNew: true, isSmart: true
+    },
+    {
+      id: 'atm-aris-gladius-sand-grey',
+      title: 'Aris Gladius — Sand Grey',
+      brand: 'Atomberg',
+      category: 'designer-fans',
+      price: 6799,
+      badges: ['Premium', 'New Arrival'],
+      specs: 'BLDC · High Air Delivery 245 CMM · Integrated ABS · IoT',
+      image: 'assets/products/atomberg-aris-gladius-sand-grey.jpg',
+      isNew: true, isSmart: true
+    },
+
+    // ── REMOTE CEILING FANS ──────────────────────────────────
+    {
+      id: 'atm-renesa-elite-snow-white',
+      title: 'Renesa Elite — Snow White',
+      brand: 'Atomberg',
+      category: 'remote-fans',
+      price: 4449,
+      badges: ['Best Seller'],
+      specs: 'BLDC · Smart IR Remote · Moonbeam LED · BEE 5 Star · 35W',
+      image: 'assets/products/atomberg-renesa-elite-snow-white.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-renesa-elite-blaze-brown',
+      title: 'Renesa Elite — Blaze Brown',
+      brand: 'Atomberg',
+      category: 'remote-fans',
+      price: 4449,
+      badges: [],
+      specs: 'BLDC · Smart IR Remote · Moonbeam LED · BEE 5 Star · 35W',
+      image: 'assets/products/atomberg-renesa-elite-blaze-brown.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-renesa-elite-midnight-black',
+      title: 'Renesa Elite — Midnight Black',
+      brand: 'Atomberg',
+      category: 'remote-fans',
+      price: 4449,
+      badges: [],
+      specs: 'BLDC · Smart IR Remote · Moonbeam LED · BEE 5 Star · 35W',
+      image: 'assets/products/atomberg-renesa-elite-midnight-black.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-ameza-gloss-white',
+      title: 'Ameza-I — Gloss White',
+      brand: 'Atomberg',
+      category: 'remote-fans',
+      price: 3599,
+      badges: ['Best Seller'],
+      specs: 'BLDC · Remote Control · LED Speed Indicator · 5 Star · 35W',
+      image: 'assets/products/atomberg-ameza-gloss-white.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-ameza-gloss-brown',
+      title: 'Ameza-I — Gloss Brown',
+      brand: 'Atomberg',
+      category: 'remote-fans',
+      price: 3599,
+      badges: [],
+      specs: 'BLDC · Remote Control · LED Speed Indicator · 5 Star · 35W',
+      image: 'assets/products/atomberg-ameza-gloss-brown.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-ameza-midnight-black',
+      title: 'Ameza-I — Midnight Black',
+      brand: 'Atomberg',
+      category: 'remote-fans',
+      price: 3599,
+      badges: [],
+      specs: 'BLDC · Remote Control · LED Speed Indicator · 5 Star · 35W',
+      image: 'assets/products/atomberg-ameza-midnight-black.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-renesa-prime-gloss-white',
+      title: 'Renesa Prime RM — Gloss White',
+      brand: 'Atomberg',
+      category: 'remote-fans',
+      price: 3599,
+      badges: [],
+      specs: 'BLDC · Remote Control · 5 Star · Voltage 165V–285V · 35W',
+      image: 'assets/products/atomberg-renesa-prime-gloss-white.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-renesa-prime-gloss-brown',
+      title: 'Renesa Prime Remote — Gloss Brown',
+      brand: 'Atomberg',
+      category: 'remote-fans',
+      price: 3599,
+      badges: [],
+      specs: 'BLDC · Remote Control · 5 Star · Voltage 165V–285V · 35W',
+      image: 'assets/products/atomberg-renesa-prime-gloss-brown.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-renesa-prime-misty-teal',
+      title: 'Renesa Prime Remote — Misty Teal',
+      brand: 'Atomberg',
+      category: 'remote-fans',
+      price: 3599,
+      badges: ['New Arrival'],
+      specs: 'BLDC · Remote Control · 5 Star · Voltage 165V–285V · 35W',
+      image: 'assets/products/atomberg-renesa-prime-misty-teal.jpg',
+      isNew: true, isSmart: false
+    },
+
+    // ── WALL FANS ──────────────────────────────────────────────
+    {
+      id: 'atm-silenceaire-wf-midnight-black',
+      title: 'SilenceAire WF — Midnight Black',
+      brand: 'Atomberg',
+      category: 'wall-fans',
+      price: 4499,
+      badges: ['Premium'],
+      specs: 'BLDC · Ultra Silent · 90° Oscillation · Remote Control · 60W',
+      image: 'assets/products/atomberg-silenceaire-wf-midnight-black.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-renesa-wallfan-snow-white',
+      title: 'Renesa Wallfan — Snow White',
+      brand: 'Atomberg',
+      category: 'wall-fans',
+      price: 4299,
+      badges: [],
+      specs: 'BLDC · High Speed · Remote Control · 5 Star · 35W',
+      image: 'assets/products/atomberg-renesa-wallfan-snow-white.jpg',
+      isNew: false, isSmart: false
+    },
+
+    // ── EXHAUST FANS ────────────────────────────────────────────
+    {
+      id: 'atm-exhaust-studio-plus-150',
+      title: 'Exhaust Studio+ 150mm',
+      brand: 'Atomberg',
+      category: 'exhaust-fans',
+      price: 1999,
+      badges: ['Best Seller'],
+      specs: '150mm · BLDC · Most Powerful · Double Ball Bearing · Ultra Silent',
+      image: 'assets/products/atomberg-exhaust-studio-plus-150.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-exhaust-studio-150',
+      title: 'Exhaust Studio 150mm',
+      brand: 'Atomberg',
+      category: 'exhaust-fans',
+      price: 1699,
+      badges: [],
+      specs: '150mm · BLDC · Designer Look · Silent Operation · Anti-Insect Flaps',
+      image: 'assets/products/atomberg-exhaust-studio-150.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-exhaust-efficio-150',
+      title: 'Exhaust Efficio 150mm',
+      brand: 'Atomberg',
+      category: 'exhaust-fans',
+      price: 1249,
+      badges: [],
+      specs: '150mm · BLDC · Energy Efficient · 5W–13W · Silent · 2-Year Warranty',
+      image: 'assets/products/atomberg-exhaust-efficio-150.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-exhaust-efficio-200',
+      title: 'Exhaust Efficio 200mm',
+      brand: 'Atomberg',
+      category: 'exhaust-fans',
+      price: 1549,
+      badges: [],
+      specs: '200mm · BLDC · Energy Efficient · 16W · High Air Delivery 800 CMH',
+      image: 'assets/products/atomberg-exhaust-efficio-200.jpg',
+      isNew: false, isSmart: false
+    },
+    {
+      id: 'atm-exhaust-efficio-orb-150',
+      title: 'Exhaust Efficio Orb 150mm',
+      brand: 'Atomberg',
+      category: 'exhaust-fans',
+      price: 1249,
+      badges: [],
+      specs: '150mm · BLDC · Compact Round Design · Silent · Anti-Insect Flaps',
+      image: 'assets/products/atomberg-exhaust-efficio-orb-150.jpg',
+      isNew: false, isSmart: false
+    },
+
+    // ── WATER HEATERS — AO Smith ─────────────────────────────
     {
       id: 'aos-hse-sds-15',
       title: 'AO Smith HSE-SDS 15 Litre',
       brand: 'AO Smith',
       category: 'water-heaters',
       price: 8999,
-      badge: 'Top Pick',
-      specs: '15L · Horizontal Slim · BEE 5 Star',
-      image: 'assets/products/ao-smith-hse-sds-15.jpg'
+      badges: ['Top Pick'],
+      specs: '15L · Horizontal Slim · BEE 5 Star · Glass Lined Tank',
+      image: 'assets/products/ao-smith-hse-sds-15.jpg',
+      isNew: false, isSmart: false
     },
     {
       id: 'aos-hse-vas-25',
@@ -82,9 +318,10 @@
       brand: 'AO Smith',
       category: 'water-heaters',
       price: 12999,
-      badge: '',
-      specs: '25L · Vertical · Glass Lined Tank',
-      image: 'assets/products/ao-smith-hse-vas-25.jpg'
+      badges: [],
+      specs: '25L · Vertical · Glass Lined Tank · Capillary Thermostat',
+      image: 'assets/products/ao-smith-hse-vas-25.jpg',
+      isNew: false, isSmart: false
     },
     {
       id: 'aos-hse-sas-10',
@@ -92,85 +329,23 @@
       brand: 'AO Smith',
       category: 'water-heaters',
       price: 7499,
-      badge: '',
-      specs: '10L · Fast Heat · 5 Star Rated',
-      image: 'assets/products/ao-smith-hse-sas-10.jpg'
-    },
-    {
-      id: 'aos-rapid-6',
-      title: 'AO Smith Rapid Heat 6 Litre',
-      brand: 'AO Smith',
-      category: 'water-heaters',
-      price: null,
-      badge: '',
-      specs: '6L · Instant · 3kW Heating Element',
-      image: 'assets/products/ao-smith-rapid-6.jpg'
+      badges: [],
+      specs: '10L · Fast Heat · 5 Star Rated · 2kW Element',
+      image: 'assets/products/ao-smith-hse-sas-10.jpg',
+      isNew: false, isSmart: false
     },
 
-    // ── SMART FANS — high margin, fast growing ──
-    {
-      id: 'atm-renesa-smart-wifi',
-      title: 'Atomberg Renesa Smart+ WiFi',
-      brand: 'Atomberg',
-      category: 'smart-fans',
-      price: 6990,
-      badge: 'New',
-      specs: 'WiFi · App Control · Alexa · Google',
-      image: 'assets/products/atomberg-renesa-smart-wifi.jpg'
-    },
-    {
-      id: 'atm-ikano',
-      title: 'Atomberg Ikano Smart Fan',
-      brand: 'Atomberg',
-      category: 'smart-fans',
-      price: 5490,
-      badge: '',
-      specs: 'IoT Ready · Remote · BLDC Motor',
-      image: 'assets/products/atomberg-ikano.jpg'
-    },
-
-    // ── DESIGNER FANS — very high margin ────────
-    {
-      id: 'atm-studio',
-      title: 'Atomberg Studio Designer Fan',
-      brand: 'Atomberg',
-      category: 'designer-fans',
-      price: 8490,
-      badge: 'Premium',
-      specs: 'Designer Edition · BLDC · Remote',
-      image: 'assets/products/atomberg-studio.jpg'
-    },
-    {
-      id: 'kuhl-alize',
-      title: 'Kühl Alizé Designer Fan',
-      brand: 'Kühl',
-      category: 'designer-fans',
-      price: null,
-      badge: 'Exclusive',
-      specs: 'Sculpted Blades · Luxury Finish',
-      image: 'assets/products/kuhl-alize.jpg'
-    },
-    {
-      id: 'kuhl-reve',
-      title: 'Kühl Rêve Luxury Fan',
-      brand: 'Kühl',
-      category: 'designer-fans',
-      price: null,
-      badge: '',
-      specs: 'Luxury Series · Built-in LED Light',
-      image: 'assets/products/kuhl-reve.jpg'
-    },
-
-    // ── CHANDELIERS — highest margin ────────────
+    // ── DESIGNER LIGHTS ──────────────────────────────────────
     {
       id: 'chand-crystal-8arm',
       title: 'Crystal 8-Arm Chandelier',
       brand: 'Techno Exclusive',
       category: 'chandeliers',
       price: null,
-      badge: 'Showroom Pick',
-      specs: 'Crystal Drops · 8 Arms · Dimmable LED',
-      image: 'assets/products/chand-crystal-8arm.jpg'
+      badges: ['Showroom Pick'],
+      specs: 'Crystal Drops · 8 Arms · Dimmable LED · Custom Install',
+      image: 'assets/products/chand-crystal-8arm.jpg',
+      isNew: false, isSmart: false
     },
     {
       id: 'chand-linear-modern',
@@ -178,31 +353,21 @@
       brand: 'Techno Exclusive',
       category: 'chandeliers',
       price: null,
-      badge: '',
-      specs: 'Modern Design · Matte Black · 120cm',
-      image: 'assets/products/chand-linear-modern.jpg'
+      badges: [],
+      specs: 'Modern Design · Matte Black · 120cm · LED Strip',
+      image: 'assets/products/chand-linear-modern.jpg',
+      isNew: false, isSmart: false
     },
-    {
-      id: 'chand-brass-ring',
-      title: 'Brass Ring Chandelier',
-      brand: 'Techno Exclusive',
-      category: 'chandeliers',
-      price: null,
-      badge: '',
-      specs: 'Brass Finish · 3-Ring · Luxury',
-      image: 'assets/products/chand-brass-ring.jpg'
-    },
-
-    // ── DECORATIVE LIGHTS — high margin ─────────
     {
       id: 'deco-gold-pendant',
       title: 'Gold Cluster Pendant Light',
       brand: 'Techno Exclusive',
       category: 'decorative-lights',
       price: null,
-      badge: 'Showroom Pick',
-      specs: 'LED · Warm White 3000K · Dimmable',
-      image: 'assets/products/deco-gold-pendant.jpg'
+      badges: ['Showroom Pick'],
+      specs: 'LED · Warm White 3000K · Dimmable · Custom Height',
+      image: 'assets/products/deco-gold-pendant.jpg',
+      isNew: false, isSmart: false
     },
     {
       id: 'deco-track-system',
@@ -210,9 +375,10 @@
       brand: 'Techno Exclusive',
       category: 'decorative-lights',
       price: null,
-      badge: '',
-      specs: 'Adjustable · 3000K · 30W · 3-Spot',
-      image: 'assets/products/deco-track-system.jpg'
+      badges: [],
+      specs: 'Adjustable · 3000K · 30W · 3-Spot · Matte Black Rail',
+      image: 'assets/products/deco-track-system.jpg',
+      isNew: false, isSmart: false
     },
     {
       id: 'deco-wall-sconce',
@@ -220,43 +386,23 @@
       brand: 'Techno Exclusive',
       category: 'decorative-lights',
       price: null,
-      badge: '',
-      specs: 'Set of 2 · Ambient · Gold Finish',
-      image: 'assets/products/deco-wall-sconce.jpg'
+      badges: [],
+      specs: 'Set of 2 · Ambient · Gold Finish · Warm White',
+      image: 'assets/products/deco-wall-sconce.jpg',
+      isNew: false, isSmart: false
     },
 
-    // ── EXHAUST FANS ────────────────────────────
-    {
-      id: 'atm-exhaust-150',
-      title: 'Atomberg Efficio Exhaust 150mm',
-      brand: 'Atomberg',
-      category: 'exhaust-fans',
-      price: 1290,
-      badge: '',
-      specs: '150mm · BLDC · Ultra Silent',
-      image: 'assets/products/atomberg-exhaust-150.jpg'
-    },
-    {
-      id: 'atm-exhaust-200',
-      title: 'Atomberg Efficio Exhaust 200mm',
-      brand: 'Atomberg',
-      category: 'exhaust-fans',
-      price: 1690,
-      badge: '',
-      specs: '200mm · BLDC · Built-in Timer',
-      image: 'assets/products/atomberg-exhaust-200.jpg'
-    },
-
-    // ── SERVICE PRODUCTS ─────────────────────────
+    // ── SERVICE ──────────────────────────────────────────────
     {
       id: 'svc-fan-annual',
       title: 'Fan Annual Maintenance Plan',
       brand: 'Techno Service',
       category: 'service-products',
       price: null,
-      badge: 'Service',
-      specs: 'All Brands · Annual AMC · Doorstep',
-      image: 'assets/products/service-fan.jpg'
+      badges: ['Service'],
+      specs: 'All Brands · Annual AMC · Doorstep · Priority Support',
+      image: 'assets/products/service-fan.jpg',
+      isNew: false, isSmart: false
     },
     {
       id: 'svc-water-heater-aos',
@@ -264,49 +410,60 @@
       brand: 'AO Smith',
       category: 'service-products',
       price: null,
-      badge: 'Authorized',
-      specs: 'Authorized Service · Genuine Parts',
-      image: 'assets/products/service-water.jpg'
+      badges: ['Authorized'],
+      specs: 'Authorized Service · Genuine Parts · 48hr Response',
+      image: 'assets/products/service-water.jpg',
+      isNew: false, isSmart: false
     }
   ];
 
   // ─────────────────────────────────────────────
-  // ② CATEGORY CONFIG
+  // ② CATEGORY CONFIG (extended for new tags)
   // ─────────────────────────────────────────────
   const CATEGORIES = {
-    'ceiling-fans':      { label: 'Ceiling Fans',       icon: 'fan'    },
-    'water-heaters':     { label: 'Water Heaters',      icon: 'water'  },
-    'smart-fans':        { label: 'Smart Fans',          icon: 'fan'    },
-    'designer-fans':     { label: 'Designer Fans',       icon: 'fan'    },
+    'smart-fans':        { label: 'Smart Fans',         icon: 'fan'    },
+    'designer-fans':     { label: 'Designer Fans',      icon: 'fan'    },
+    'remote-fans':       { label: 'Remote Fans',        icon: 'fan'    },
+    'wall-fans':         { label: 'Wall Fans',           icon: 'fan'    },
+    'exhaust-fans':      { label: 'Exhaust Fans',        icon: 'wind'   },
+    'water-heaters':     { label: 'Water Heaters',       icon: 'water'  },
     'chandeliers':       { label: 'Chandeliers',         icon: 'light'  },
     'decorative-lights': { label: 'Decorative Lights',   icon: 'light'  },
-    'exhaust-fans':      { label: 'Exhaust Fans',        icon: 'wind'   },
     'service-products':  { label: 'Service Products',    icon: 'wrench' }
   };
 
   // ─────────────────────────────────────────────
-  // ③ ICON SVGs (placeholder visuals)
+  // ③ VIRTUAL FILTER TAGS (Best Sellers / New Arrivals)
+  // ─────────────────────────────────────────────
+  const VIRTUAL_TAGS = {
+    'best-sellers': { label: 'Best Sellers', filter: p => p.badges && p.badges.includes('Best Seller') },
+    'new-arrivals': { label: 'New Arrivals', filter: p => p.isNew === true }
+  };
+
+  // ─────────────────────────────────────────────
+  // ④ ICON SVGs
   // ─────────────────────────────────────────────
   const ICONS = {
     fan: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.5"/><path d="M12 9.5c0-3.5 2-6.5 4.5-6.5S21 5.5 21 8c0 2-1.5 3.5-3 4.5L12 9.5z"/><path d="M9.5 12C6 12 3 10 3 7.5S5.5 3 8 3c2 0 3.5 1.5 4.5 3L9.5 12z"/><path d="M14.5 12c3.5 0 6.5 2 6.5 4.5S18.5 21 16 21c-2 0-3.5-1.5-4.5-3L14.5 12z"/><path d="M12 14.5c0 3.5-2 6.5-4.5 6.5S3 18.5 3 16c0-2 1.5-3.5 3-4.5L12 14.5z"/></svg>`,
-    light: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21h6M12 3a6 6 0 0 1 4 10.47V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-3.53A6 6 0 0 1 12 3z"/><line x1="12" y1="3" x2="12" y2="1"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/><line x1="21" y1="12" x2="23" y2="12"/></svg>`,
-    water: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/><path d="M12 18v-6M10 16h4"/></svg>`,
+    light: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21h6M12 3a6 6 0 0 1 4 10.47V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-3.53A6 6 0 0 1 12 3z"/></svg>`,
+    water: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
     wind:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`,
     wrench:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`
   };
 
   // ─────────────────────────────────────────────
-  // ④ STATE
+  // ⑤ STATE
   // ─────────────────────────────────────────────
   let state = {
-    category : 'all',
-    brands   : new Set(),
-    search   : '',
-    sort     : 'default'
+    category  : 'all',
+    virtualTag: '',
+    brands    : new Set(),
+    search    : '',
+    sort      : 'default'
   };
 
   // ─────────────────────────────────────────────
-  // ⑤ DOM REFS
+  // ⑥ DOM REFS
   // ─────────────────────────────────────────────
   const grid         = document.getElementById('product-grid');
   const noResults    = document.getElementById('no-results');
@@ -321,41 +478,53 @@
   const clearBtn     = document.getElementById('clear-filters');
 
   // ─────────────────────────────────────────────
-  // ⑥ WHATSAPP
+  // ⑦ WHATSAPP
   // ─────────────────────────────────────────────
   const WA = '918594000196';
-  const WA_MSG = "Hi, I'm interested in this product from Techno Fans & Lights.";
+  const WA_MSG = "Hi, I'm interested in this product from Techno Fans & Lights — your Atomberg dealer in Malappuram.";
 
   function waLink(title) {
     return `https://wa.me/${WA}?text=${encodeURIComponent(WA_MSG + '\n\nProduct: ' + title)}`;
   }
 
   // ─────────────────────────────────────────────
-  // ⑦ HELPERS
+  // ⑧ HELPERS
   // ─────────────────────────────────────────────
   function priceHtml(price) {
     if (!price) return `<div class="product-price call-price">Call for Best Price</div>`;
     return `<div class="product-price"><span class="price-from">From</span> ₹${price.toLocaleString('en-IN')}</div>`;
   }
 
-  function badgeHtml(badge) {
-    if (!badge) return '';
+  function badgesHtml(badges) {
+    if (!badges || !badges.length) return '';
+    const primary = badges[0];
     let cls = 'product-badge';
-    if (badge === 'Service')    cls += ' badge-service';
-    if (badge === 'Authorized') cls += ' badge-auth';
-    return `<div class="${cls}">${badge}</div>`;
+    if (primary === 'Service')     cls += ' badge-service';
+    if (primary === 'Authorized')  cls += ' badge-auth';
+    if (primary === 'Smart')       cls += ' badge-smart';
+    if (primary === 'New Arrival') cls += ' badge-new';
+    let html = `<div class="${cls}">${primary}</div>`;
+    // Second badge (smaller, stacked)
+    if (badges[1]) {
+      let cls2 = 'product-badge product-badge-2';
+      if (badges[1] === 'Smart')       cls2 += ' badge-smart';
+      if (badges[1] === 'New Arrival') cls2 += ' badge-new';
+      if (badges[1] === 'Best Seller') cls2 += ' badge-bs';
+      html += `<div class="${cls2}">${badges[1]}</div>`;
+    }
+    return html;
   }
 
   // ─────────────────────────────────────────────
-  // ⑧ CARD TEMPLATE
+  // ⑨ CARD TEMPLATE
   // ─────────────────────────────────────────────
   function cardHtml(p) {
     const cfg  = CATEGORIES[p.category] || { label: p.category, icon: 'light' };
     const icon = ICONS[cfg.icon] || ICONS.light;
     return `
-<article class="product-card" data-id="${p.id}" tabindex="0">
+<article class="product-card" data-id="${p.id}" tabindex="0" role="listitem">
   <div class="product-img-wrap" data-cat="${p.category}">
-    ${badgeHtml(p.badge)}
+    ${badgesHtml(p.badges)}
     <div class="product-img-placeholder">
       <div class="pip-icon">${icon}</div>
       <span class="pip-label">${cfg.label}</span>
@@ -385,24 +554,31 @@
   }
 
   // ─────────────────────────────────────────────
-  // ⑨ FILTER + SORT
+  // ⑩ FILTER + SORT
   // ─────────────────────────────────────────────
   function filtered() {
     let list = [...PRODUCTS];
-    if (state.category !== 'all')
+
+    // Virtual tags (Best Sellers / New Arrivals) override category
+    if (state.virtualTag && VIRTUAL_TAGS[state.virtualTag]) {
+      list = list.filter(VIRTUAL_TAGS[state.virtualTag].filter);
+    } else if (state.category !== 'all') {
       list = list.filter(p => p.category === state.category);
+    }
+
     if (state.brands.size > 0)
       list = list.filter(p => state.brands.has(p.brand));
+
     if (state.search) {
       const q = state.search.toLowerCase();
-      const cats = CATEGORIES;
       list = list.filter(p =>
         p.title.toLowerCase().includes(q) ||
         p.brand.toLowerCase().includes(q) ||
         p.specs.toLowerCase().includes(q) ||
-        (cats[p.category]?.label || '').toLowerCase().includes(q)
+        (CATEGORIES[p.category]?.label || '').toLowerCase().includes(q)
       );
     }
+
     switch (state.sort) {
       case 'price-asc':
         list.sort((a, b) => {
@@ -420,12 +596,14 @@
         }); break;
       case 'name-asc':
         list.sort((a, b) => a.title.localeCompare(b.title)); break;
+      case 'newest':
+        list.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0)); break;
     }
     return list;
   }
 
   // ─────────────────────────────────────────────
-  // ⑩ RENDER GRID
+  // ⑪ RENDER GRID
   // ─────────────────────────────────────────────
   function render() {
     const list = filtered();
@@ -439,7 +617,7 @@
     grid.innerHTML = list.map(cardHtml).join('');
     resultsCnt.textContent = `${list.length} ${list.length === 1 ? 'product' : 'products'}`;
 
-    // Real image fade-in + onerror hide
+    // Real image fade-in
     grid.querySelectorAll('.product-real-img').forEach(img => {
       img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease;';
       img.addEventListener('load',  () => { img.style.opacity = '1'; });
@@ -460,13 +638,24 @@
   }
 
   // ─────────────────────────────────────────────
-  // ⑪ BUILD CATEGORY FILTER
+  // ⑫ BUILD CATEGORY FILTER (with virtual tags)
   // ─────────────────────────────────────────────
   function buildCategories() {
     const counts = {};
     PRODUCTS.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
 
+    const bsCount  = PRODUCTS.filter(VIRTUAL_TAGS['best-sellers'].filter).length;
+    const newCount = PRODUCTS.filter(VIRTUAL_TAGS['new-arrivals'].filter).length;
+
     let html = `<li><button class="filter-btn active" data-cat="all" id="cat-all">All Products <span class="filter-count">${PRODUCTS.length}</span></button></li>`;
+
+    // Virtual tags at top
+    html += `<li><button class="filter-btn filter-btn-virtual" data-virtual="best-sellers" id="cat-best-sellers">⭐ Best Sellers <span class="filter-count">${bsCount}</span></button></li>`;
+    html += `<li><button class="filter-btn filter-btn-virtual" data-virtual="new-arrivals" id="cat-new-arrivals">✦ New Arrivals <span class="filter-count">${newCount}</span></button></li>`;
+
+    // Separator
+    html += `<li class="filter-separator"></li>`;
+
     Object.entries(CATEGORIES).forEach(([key, cfg]) => {
       if (!counts[key]) return;
       html += `<li><button class="filter-btn" data-cat="${key}" id="cat-${key}">${cfg.label} <span class="filter-count">${counts[key]}</span></button></li>`;
@@ -474,17 +663,25 @@
     catList.innerHTML = html;
 
     catList.addEventListener('click', e => {
-      const btn = e.target.closest('.filter-btn[data-cat]');
+      const btn = e.target.closest('.filter-btn');
       if (!btn) return;
+
       catList.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      state.category = btn.dataset.cat;
+
+      if (btn.dataset.virtual) {
+        state.virtualTag = btn.dataset.virtual;
+        state.category   = 'all';
+      } else {
+        state.virtualTag = '';
+        state.category   = btn.dataset.cat;
+      }
       render();
     });
   }
 
   // ─────────────────────────────────────────────
-  // ⑫ BUILD BRAND FILTER
+  // ⑬ BUILD BRAND FILTER
   // ─────────────────────────────────────────────
   function buildBrands() {
     const order  = ['Atomberg', 'AO Smith', 'Kühl', 'Techno Exclusive', 'Techno Service'];
@@ -512,7 +709,7 @@
   }
 
   // ─────────────────────────────────────────────
-  // ⑬ SEARCH & SORT
+  // ⑭ SEARCH & SORT
   // ─────────────────────────────────────────────
   searchInput.addEventListener('input', () => {
     state.search = searchInput.value.trim();
@@ -525,19 +722,19 @@
   });
 
   // ─────────────────────────────────────────────
-  // ⑭ CLEAR FILTERS
+  // ⑮ CLEAR FILTERS
   // ─────────────────────────────────────────────
   clearBtn.addEventListener('click', () => {
-    state = { category: 'all', brands: new Set(), search: '', sort: 'default' };
-    searchInput.value     = '';
-    sortSelect.value      = 'default';
+    state = { category: 'all', virtualTag: '', brands: new Set(), search: '', sort: 'default' };
+    searchInput.value = '';
+    sortSelect.value  = 'default';
     catList.querySelectorAll('.filter-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
     brandList.querySelectorAll('input[type="checkbox"]').forEach(cb => { cb.checked = false; });
     render();
   });
 
   // ─────────────────────────────────────────────
-  // ⑮ MOBILE SIDEBAR DRAWER
+  // ⑯ MOBILE SIDEBAR DRAWER
   // ─────────────────────────────────────────────
   function openSidebar()  {
     sidebar.classList.add('open');
@@ -555,10 +752,10 @@
   backdrop.addEventListener('click', closeSidebar);
 
   // ─────────────────────────────────────────────
-  // ⑯ PRODUCT MODAL
+  // ⑰ PRODUCT MODAL
   // ─────────────────────────────────────────────
-  const overlay   = document.getElementById('product-modal-overlay');
-  const mClose    = document.getElementById('modal-close');
+  const overlay = document.getElementById('product-modal-overlay');
+  const mClose  = document.getElementById('modal-close');
 
   function openModal(id) {
     const p = PRODUCTS.find(x => x.id === id);
@@ -580,7 +777,6 @@
     const pipIcon = imgWrap.querySelector('.modal-pip-icon');
     if (pipIcon) pipIcon.innerHTML = icon;
 
-    // swap image
     let mImg = imgWrap.querySelector('.modal-real-img');
     if (!mImg) {
       mImg = document.createElement('img');
@@ -610,7 +806,7 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
 
   // ─────────────────────────────────────────────
-  // ⑰ INIT
+  // ⑱ INIT
   // ─────────────────────────────────────────────
   buildCategories();
   buildBrands();
@@ -618,12 +814,24 @@
 
   const urlParams = new URLSearchParams(window.location.search);
 
-  // Deep-link via ?cat=ceiling-fans
+  // Deep-link via ?cat=smart-fans
   const urlCat = urlParams.get('cat');
   if (urlCat && CATEGORIES[urlCat]) {
-    state.category = urlCat;
+    state.category   = urlCat;
+    state.virtualTag = '';
     catList.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     const target = catList.querySelector(`[data-cat="${urlCat}"]`);
+    if (target) target.classList.add('active');
+    render();
+  }
+
+  // Deep-link via ?virtual=best-sellers or ?virtual=new-arrivals
+  const urlVirtual = urlParams.get('virtual');
+  if (urlVirtual && VIRTUAL_TAGS[urlVirtual]) {
+    state.virtualTag = urlVirtual;
+    state.category   = 'all';
+    catList.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    const target = catList.querySelector(`[data-virtual="${urlVirtual}"]`);
     if (target) target.classList.add('active');
     render();
   }
@@ -631,7 +839,6 @@
   // Deep-link via ?brand=Atomberg
   const urlBrand = urlParams.get('brand');
   if (urlBrand) {
-    // Find the checkbox for this brand
     const checkboxes = brandList.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(cb => {
       if (cb.value.toLowerCase() === urlBrand.toLowerCase()) {
@@ -639,9 +846,7 @@
         state.brands.add(cb.value);
       }
     });
-    if (state.brands.size > 0) {
-      render();
-    }
+    if (state.brands.size > 0) render();
   }
 
 })();
